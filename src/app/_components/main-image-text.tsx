@@ -9,6 +9,7 @@ type Props = {
   buttonText?: string;
   buttonLink?: string;
   contentAlign?: "left" | "center" | "right";
+  fullHeight?: boolean;
 };
 
 export function MainImageText({
@@ -19,17 +20,19 @@ export function MainImageText({
   buttonText,
   buttonLink = "#",
   contentAlign = "left",
+  fullHeight = false,
 }: Props) {
   return (
-    <section className={cn("relative w-full flex items-center mb-8 md:mb-16", {
+    <section className={cn("relative w-full h-full", {
       "bg-pink-300": !backgroundImage,
     })}>
       {backgroundImage && (
-        <div className="w-full relative aspect-[2/1]">
+        <div className="absolute inset-0">
           <Image
             src={backgroundImage}
             alt="Background"
             fill
+            priority
             className="object-cover"
           />
           <div className="absolute inset-0 flex items-center">
